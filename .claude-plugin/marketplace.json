@@ -1,0 +1,15 @@
+{
+  "name": "mh-shaheen",
+  "owner": {
+    "name": "Mohammad AlHuwaidi"
+  },
+  "description": "MH Shaheen™: a free AI executive office for Gulf small businesses (Kuwait, Saudi Arabia, UAE)",
+  "plugins": [
+    {
+      "name": "mh-shaheen",
+      "source": "./plugin",
+      "description": "An AI executive office for small businesses in the Gulf: a CEO office plus 12 departments that stay dormant until your company needs them; built to pause every external action until you approve it in writing",
+      "version": "0.1.0"
+    }
+  ]
+}

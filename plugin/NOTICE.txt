@@ -1,0 +1,85 @@
+شاهين (MH Shaheen™)
+Copyright (c) 2026 Mohammad AlHuwaidi
+
+هذا الملف يذكر الأعمال اللي استلهمنا منها · التفاصيل لكل مهارة في docs/idea-sources.md
+This file credits the work that inspired this kit · per-skill detail in docs/idea-sources.md
+
+================================================================
+1. founder-skills
+================================================================
+https://github.com/ognjengt/founder-skills
+Copyright (c) 2026 Ognjen Gatalo · MIT License
+
+ما استلهمناه: فكرة ملف سياق واحد للشركة تقراه كل المهارات، وبعض أسئلة التشخيص
+What we drew on: the idea of a single company-context file read by every skill,
+and some diagnostic question areas
+
+حالة الاقتباس: لا يوجد نص منسوخ حرفياً حتى هذا الإصدار · إذا اقتُبس أي نص أو هيكل
+حرفي لاحقاً، يُذكر موضعه هنا ويبقى إشعار رخصة MIT التالي
+Quotation status: no verbatim text copied as of this version · if any verbatim
+text or structure is used later, its location is listed here under the MIT
+notice below
+
+----------------------------------------------------------------
+MIT License
+
+Copyright (c) 2026 Ognjen Gatalo
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+----------------------------------------------------------------
+
+================================================================
+2. Claude-Skills (borghei)
+================================================================
+https://github.com/borghei/Claude-Skills
+MIT License with Commons Clause
+
+إلهام للتغطية فقط: استخدمنا قائمة مهاراته لنتأكد إن الحزمة ما فاتها موضوع مهم
+· لم يُنسخ منه أي نص أو قائمة خطوات أو هيكل، وكل مهارة في هذه الحزمة مكتوبة من الصفر
+Coverage inspiration only: we used its skill list to check that no important
+topic was missed · no text, step list or structure was copied, and every skill
+in this kit was written from scratch
+
+================================================================
+3. أطر معروفة
+   Well-known frameworks
+================================================================
+الحزمة تذكر أطر معروفة بأسمائها، وتستخدم أسماء خاناتها بصياغتها الخاصة · لا تنسخ أي
+لوحة أو رسم أو قالب من هذه الأطر
+The kit names well-known frameworks and uses their section names in its own
+wording · it does not copy any canvas, drawing or template from them
+
+- Business Model Canvas (STR-01)
+  من تصميم Strategyzer AG · https://www.strategyzer.com
+  Designed by Strategyzer AG · the original canvas is published under the
+  Creative Commons Attribution-ShareAlike 3.0 Unported licence (as printed on
+  the canvas itself)
+
+- Value Proposition Canvas (PRD-03)
+  من Strategyzer AG · https://www.strategyzer.com · المحتوى محفوظ الحقوق لـStrategyzer AG
+  By Strategyzer AG · per Strategyzer's usage guidelines the Value Proposition
+  Canvas is under copyright, with adaptations reserved to Strategyzer AG · the
+  kit uses only the general idea of matching customer needs with the offer, in
+  its own wording, and does not reproduce the canvas or its layout
+
+- Lean Canvas (STR-01)
+  من Ash Maurya · https://www.leanstack.com · مقتبس من Business Model Canvas
+  By Ash Maurya, adapted from the Business Model Canvas · its licence is not
+  stated on the creator's current website, so the kit uses its name for
+  reference only

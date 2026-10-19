@@ -1,0 +1,37 @@
+{
+  "schema_version": "0.1.1",
+  "company_file": "COMPANY.md",
+  "stage": null,
+  "stage_confirmed": false,
+  "stage_history": [],
+  "settings": {
+    "auto_activate_stage_departments": false,
+    "max_activation_suggestions_per_week": 1,
+    "declined_suggestion_cooldown_days": 30,
+    "approval_expiry_hours": 24
+  },
+  "departments": {
+    "ceo": { "name_ar": "مكتب الـCEO", "state": "active", "optional": false, "since": null, "by": "install", "reason": "فعّال دايماً", "active_playbooks": ["CEO-01", "CEO-02", "CEO-03", "CEO-04", "CEO-05", "CEO-06", "CEO-07", "CEO-12"] },
+    "for": { "name_ar": "التأسيس والشؤون الحكومية", "state": "dormant", "optional": false, "since": null, "by": null, "reason": null, "active_playbooks": [] },
+    "leg": { "name_ar": "القانونية", "state": "dormant", "optional": true, "since": null, "by": null, "reason": null, "active_playbooks": [] },
+    "fin": { "name_ar": "المالية والمحاسبة", "state": "dormant", "optional": false, "since": null, "by": null, "reason": null, "active_playbooks": [] },
+    "fun": { "name_ar": "التمويل والمستثمرين", "state": "dormant", "optional": false, "since": null, "by": null, "reason": null, "active_playbooks": [] },
+    "str": { "name_ar": "الاستراتيجية", "state": "dormant", "optional": false, "since": null, "by": null, "reason": null, "active_playbooks": [] },
+    "mkt": { "name_ar": "البراند والتسويق والمحتوى", "state": "dormant", "optional": false, "since": null, "by": null, "reason": null, "active_playbooks": [] },
+    "sal": { "name_ar": "المبيعات", "state": "dormant", "optional": false, "since": null, "by": null, "reason": null, "active_playbooks": [] },
+    "cs": { "name_ar": "خدمة العملاء", "state": "dormant", "optional": false, "since": null, "by": null, "reason": null, "active_playbooks": [] },
+    "ops": { "name_ar": "العمليات", "state": "dormant", "optional": false, "since": null, "by": null, "reason": null, "active_playbooks": [] },
+    "hr": { "name_ar": "الموارد البشرية", "state": "dormant", "optional": false, "since": null, "by": null, "reason": null, "active_playbooks": [] },
+    "tec": { "name_ar": "التقنية والموقع والأمن", "state": "dormant", "optional": false, "since": null, "by": null, "reason": null, "active_playbooks": [] },
+    "prd": { "name_ar": "المنتج والابتكار", "state": "dormant", "optional": false, "since": null, "by": null, "reason": null, "active_playbooks": [] }
+  },
+  "quality_checks": {
+    "FOR-08": { "trigger": "any-web-page-or-invoice", "enabled": true },
+    "FOR-10": { "trigger": "any-for-output · any-procedure-record-request", "enabled": true },
+    "LEG-08": { "trigger": "any-legal-output", "enabled": true },
+    "MKT-12": { "trigger": "any-published-text", "enabled": true },
+    "MKT-17": { "trigger": "any-publication", "enabled": true }
+  },
+  "suggestions": [],
+  "activation_log": []
+}

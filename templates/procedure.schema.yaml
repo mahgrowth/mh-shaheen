@@ -1,0 +1,277 @@
+# procedure.schema.yaml · version 0.3.2 · 2026-10-18
+# JSON Schema (draft 2020-12) written in YAML for the government-procedure records
+# One record = one file data/procedures/<COUNTRY>/<id>.md in the repository (copied to the formation skill as assets/procedures/<COUNTRY>/<id>.md) with this schema as its YAML front matter
+# Spec references: 04-SPEC-v0.2 §4.8 (format) and §4.9 (guard) · guard logic: docs/procedure-guard.md (after install: assets/docs/procedure-guard.md)
+# Hard rules enforced below:
+#   1. source_quality secondary can never be status confirmed
+#   2. max_age_days can never exceed 90
+#   3. emirate is required for AE and must be null elsewhere
+#   4. every fee carries its own source
+#   5. a fee range (amount_min + amount_max) always comes as a pair and forces amount: null
+#   6. an empty source_quote means the source states no fee, and forces amount: null with no range
+#   7. every record id uses the department code FOR, whichever skill reads it
+#   8. a null source_quote means we could not read the fee on the source (blocked page, tool limit, scanned file), not that there is no fee · it forces amount: null with no range, requires note_ar, and the record can never be status confirmed
+#   9. official_url and portal_url pass the same link check: https only, host made of a-z 0-9 . - only (so no port, no @, no capitals, no backslash, no percent sign, no trailing dot)
+#   10. a variable fee (variable: true) means the source states the fee is calculated or set case by case and the verbatim quote says how · it forces amount: null with no range, a non-empty source_quote and note_ar · and amount: null with a non-empty quote and no range is only allowed as a variable fee, so every fee is in exactly one explicit state (number · range · "" no fee stated · null not read · variable)
+# Rules not expressible in JSON Schema, checked by FOR-10 validity (docs/procedure-guard.md §4): amount_min must not exceed amount_max · the link host is not an IP, has no xn--, and is on the country allowlist (subdomains only under a «حكومي» line) · §4.2
+# Authoring note: quote every date ("2026-10-16") · unquoted YAML dates parse as date objects and fail the string type
+# Change log:
+#   0.1.0 · 2026-10-16 · first version
+#   0.2.0 · 2026-10-17 · optional fee range (amount_min, amount_max) · empty source_quote convention · id department code fixed to FOR · additive, every 0.1.0 record stays valid
+#   0.2.1 · 2026-10-17 · source_quote may be null (fee not read) · separates «source states no fee» ("") from «we could not read the fee» (null) · additive, every 0.2.0 record stays valid
+#   0.3.0 · 2026-10-18 · optional fields.rate (official tax or contribution percentage with its own source and verbatim quote, and whether it is added on the sale price) · applies_to tags must come from docs/procedure-tags.md (checked by FOR-10, not by this schema) · additive, every 0.2.1 record stays valid
+#   0.3.2 · 2026-10-18 · test G2 (M02): optional fee.variable (rule 10) for a fee the source says is calculated or set case by case, shown with its verbatim quote and never summed · every 0.3.1 record stays valid after the fee fixes of the same day, except one record waiting for a decision (AE-FOR-ICP-EST-CARD, itemised list)
+#   0.3.1 · 2026-10-18 · security review G3 (M6, L1): portal_url gets the same https pattern and host pattern as official_url (rule 9) · every 0.3.0 record stays valid after the portal_url fixes of the same day (one port removed, two hosts off the allowlist set to null)
+
+$schema: "https://json-schema.org/draft/2020-12/schema"
+$id: "procedure.schema.yaml"
+title: "Gulf government procedure record"
+type: object
+additionalProperties: false
+required:
+  - id
+  - country
+  - emirate
+  - jurisdiction
+  - title_ar
+  - service_ar
+  - authority_ar
+  - official_url
+  - applies_to
+  - fields
+  - status
+  - source_quality
+  - last_verified
+  - verified_by
+  - max_age_days
+  - change_log
+
+properties:
+  id:
+    description: "COUNTRY-FOR-SHORTNAME in capitals, also the file name without .md · the procedure base is owned by FOR, so labour, tax or payment steps read by HR-05, FIN-10 or TEC-08 keep FOR too"
+    type: string
+    pattern: "^(KW|SA|AE|QA|BH|OM)-FOR-[A-Z0-9]+(-[A-Z0-9]+)*$"
+  schema_version:
+    type: string
+    pattern: "^\\d+\\.\\d+\\.\\d+$"
+  country:
+    description: "ISO 3166-1 alpha-2"
+    type: string
+    enum: [KW, SA, AE, QA, BH, OM]
+  emirate:
+    description: "AE only (DXB, AUH, ...) · null for every other country"
+    type: ["string", "null"]
+  jurisdiction:
+    description: "mainland or freezone:<authority-slug>"
+    type: string
+    pattern: "^(mainland|freezone:[a-z0-9-]+)$"
+  title_ar:
+    description: "Short Arabic title shown to the founder"
+    type: string
+  service_ar:
+    description: "Exact service name as written on the official page · FOR-10 uses it to confirm the page identity"
+    type: string
+  authority_ar:
+    type: string
+  legal_form:
+    description: "Legal form(s) this step belongs to, used by data/procedures/<COUNTRY>/index.md"
+    type: array
+    items: { type: string }
+  step_order:
+    description: "Position of this step inside its legal-form path in index.md"
+    type: integer
+    minimum: 1
+  official_url:
+    description: "Public service-description page (not a login portal) · must be on the country's official-domain allowlist · host pattern = rule 9, allowlist and IP/xn-- checks = FOR-10 (docs/procedure-guard.md §4.2)"
+    type: string
+    format: uri
+    pattern: "^https://[a-z0-9-]+(\\.[a-z0-9-]+)+([/?#]|$)"
+  portal_url:
+    description: "Where the founder applies personally · the kit never opens or submits it · same link check as official_url (rule 9 + docs/procedure-guard.md §4.2) · a host off the allowlist or on a non-standard port is written as null, with the way in explained in notes_ar"
+    type: ["string", "null"]
+    format: uri
+    pattern: "^https://[a-z0-9-]+(\\.[a-z0-9-]+)+([/?#]|$)"
+  applies_to:
+    description: "Conditions in short machine tags, matched against COMPANY.md"
+    type: array
+    items: { type: string, pattern: "^[a-z0-9_]+$" }
+  fields:
+    description: "The values FOR-10 compares against the official page"
+    type: object
+    additionalProperties: false
+    required: [fee, duration, documents, conditions]
+    properties:
+      fee:
+        type: object
+        additionalProperties: false
+        required: [amount, currency, source_url, source_quote]
+        dependentRequired:
+          amount_min: [amount_max]
+          amount_max: [amount_min]
+        allOf:
+          - if:
+              required: [amount_min]
+            then:
+              properties: { amount: { type: "null" } }
+          - if:
+              properties: { source_quote: { const: "" } }
+              required: [source_quote]
+            then:
+              properties: { amount: { type: "null" } }
+              not: { required: [amount_min] }
+          - if:
+              properties: { source_quote: { type: "null" } }
+              required: [source_quote]
+            then:
+              properties: { amount: { type: "null" } }
+              not: { required: [amount_min] }
+              required: [note_ar]
+          - if:
+              required: [variable]
+            then:
+              properties:
+                amount: { type: "null" }
+                source_quote: { type: string, minLength: 1 }
+              not: { required: [amount_min] }
+              required: [note_ar]
+          - if:
+              properties:
+                amount: { type: "null" }
+                source_quote: { type: string, minLength: 1 }
+              required: [amount, source_quote]
+              not: { required: [amount_min] }
+            then:
+              required: [variable]
+        properties:
+          amount:
+            description: "Number · 0 when the source says free · null when the source states no fee, when the fee could not be read (source_quote null), or when the source publishes a range (then use amount_min and amount_max)"
+            type: ["number", "null"]
+            minimum: 0
+          variable:
+            description: "Only when the source says the fee is calculated or set case by case (by measurement, by calculator, by the authority on approval) · requires amount: null, no range, a verbatim source_quote that says how, and note_ar · shown as «الرسوم متغيرة» with the quote, never as a number, free or 0, and never added to a total"
+            type: boolean
+            const: true
+          amount_min:
+            description: "Lower bound when the official page publishes a range · requires amount_max and amount: null · note_ar says what sets the value inside the range"
+            type: number
+            minimum: 0
+          amount_max:
+            description: "Upper bound when the official page publishes a range · requires amount_min and amount: null"
+            type: number
+            minimum: 0
+          currency:
+            type: string
+            enum: [KWD, SAR, AED, QAR, BHD, OMR]
+          note_ar:
+            type: string
+          source_url:
+            description: "Where this fee is written · usually equal to official_url"
+            type: string
+            format: uri
+          source_quote:
+            description: "Verbatim snippet from the source that states the fee · for a range it contains both numbers · empty string only when we read the source and it states no fee at all (amount: null, no range), shown as «المصدر الرسمي ما يذكر رسوم» and never as free · null when the source may state a fee but we could not read it (amount: null, no range, note_ar says why and what the index or secondary sources mention), shown as «ما قدرنا نقرا رسوم المصدر الرسمي» · with variable: true it is the verbatim sentence that says how the fee is calculated or set"
+            type: ["string", "null"]
+      duration:
+        type: object
+        additionalProperties: false
+        required: [text_ar, days]
+        properties:
+          text_ar: { type: string }
+          days:
+            description: "Normalised to days for comparison · fractions allowed (0.125 = 3 hours) · null when not published"
+            type: ["number", "null"]
+            minimum: 0
+      documents:
+        description: "One item per document · empty list only if the page says none are required"
+        type: array
+        items: { type: string }
+      conditions:
+        type: array
+        items: { type: string }
+      rate:
+        description: "Optional · only when an official source states a tax or contribution percentage · FIN-02 uses on_price to build a tax-inclusive price, FIN-10 shows it as is · never filled from memory or a secondary source"
+        type: object
+        additionalProperties: false
+        required: [percent, base_ar, on_price, source_url, source_quote]
+        properties:
+          percent:
+            description: "The percentage as a number (15 = 15%)"
+            type: number
+            minimum: 0
+            maximum: 100
+          base_ar:
+            description: "What the percentage is taken from, in the source's words (net profit, taxable income, value of the sale…)"
+            type: string
+          on_price:
+            description: "true = added on the sale price (like VAT) so FIN-02 may add it to a price · false = taken from profit or income, never added to a price"
+            type: boolean
+          source_url:
+            type: string
+            format: uri
+          source_quote:
+            description: "Verbatim snippet from the source that contains the percentage"
+            type: string
+            minLength: 1
+          note_ar:
+            type: string
+  legal_refs:
+    description: "Laws or decisions the page cites, as written on the page"
+    type: array
+    items: { type: string }
+  status:
+    type: string
+    enum: [confirmed, likely, to_verify]
+  source_quality:
+    type: string
+    enum: [official, secondary]
+  last_verified:
+    type: string
+    format: date
+  verified_by:
+    description: "Always the literal value «فريق الحزمة» in the published kit"
+    type: string
+  verification_method:
+    type: string
+    enum: [human, auto]
+    default: human
+  max_age_days:
+    type: integer
+    minimum: 1
+    maximum: 90
+    default: 90
+  change_log:
+    type: array
+    minItems: 1
+    items:
+      type: object
+      additionalProperties: false
+      required: [date, change, by]
+      properties:
+        date: { type: string, format: date }
+        change: { type: string }
+        by: { type: string }
+  notes_ar:
+    type: string
+
+allOf:
+  - if:
+      properties: { source_quality: { const: secondary } }
+    then:
+      properties: { status: { enum: [likely, to_verify] } }
+  - if:
+      properties:
+        fields:
+          properties:
+            fee:
+              properties: { source_quote: { type: "null" } }
+              required: [source_quote]
+          required: [fee]
+      required: [fields]
+    then:
+      properties: { status: { enum: [likely, to_verify] } }
+  - if:
+      properties: { country: { const: AE } }
+    then:
+      properties: { emirate: { type: string } }
+    else:
+      properties: { emirate: { type: "null" } }

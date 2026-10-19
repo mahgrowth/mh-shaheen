@@ -1,0 +1,110 @@
+{
+  "_note": "مثال لشركة خيالية بالمرحلة ② · أرقام المثال خيالية · CEO-06 يولّد الملف الحقيقي من ملفات «شركتي»",
+  "schema_version": "0.2.0",
+  "generated_at": "2026-10-18T10:45",
+  "sample": true,
+  "company": { "name": "شركة سارة للتصميم", "initial": "س", "country": "KW", "emirate": null, "address_form": "f" },
+  "stage": {
+    "current": 2, "confirmed": true, "since": "2026-10-14",
+    "gate": [
+      { "label": "ترخيص صادر", "status": "missing", "source": "COMPANY.md · 2026-10-14" },
+      { "label": "حساب بنكي للشركة", "status": "no_data", "source": null },
+      { "label": "طريقة تحصيل من العملاء", "status": "missing", "source": "COMPANY.md · 2026-10-14" }
+    ]
+  },
+  "next_step": { "text": "تقدّمين طلب الترخيص، والخطوات جاهزة لك بقاعدة الإجراءات", "playbook": "FOR-02" },
+  "approvals": [
+    { "id": "APR-0012", "title": "نشر بوست «قريباً» على إنستغرام", "party": "إنستغرام", "cost": "لا شي", "risk": "low", "double": false, "expires": "2026-10-19T10:40", "status": "pending",
+      "copy": { "approve": "اعتمد APR-0012", "modify": "عدّل APR-0012", "reject": "ارفض APR-0012" } },
+    { "id": "APR-0013", "title": "إرسال عرض سعر لأول عميلة محتملة", "party": "عميلة محتملة", "cost": "لا شي", "risk": "medium", "double": false, "expires": "2026-10-19T12:00", "status": "pending",
+      "copy": { "approve": "اعتمد APR-0013", "modify": "عدّل APR-0013", "reject": "ارفض APR-0013" } },
+    { "id": "APR-0011", "title": "بدء اشتراك شهري ببرنامج تصميم", "party": "مزود برنامج التصميم", "cost": "4.5 د.ك شهرياً", "risk": "high", "double": true, "expires": "2026-10-20T09:00", "status": "frozen",
+      "copy": { "approve": "اعتمد APR-0011", "modify": "عدّل APR-0011", "reject": "ارفض APR-0011" } }
+  ],
+  "departments": [
+    { "code": "ceo", "name_ar": "مكتب الـCEO", "state": "active", "optional": false, "reason": "فعّال دايماً", "active_playbooks": ["CEO-01", "CEO-02", "CEO-03", "CEO-04", "CEO-05", "CEO-06", "CEO-07", "CEO-12"], "open_tasks": 1, "recent_audit": ["AUD-0043", "AUD-0040"] },
+    { "code": "for", "name_ar": "التأسيس والشؤون الحكومية", "state": "active", "optional": false, "reason": "مرحلة التأسيس", "active_playbooks": ["FOR-01", "FOR-02", "FOR-03", "FOR-04", "FOR-10"], "open_tasks": 2, "recent_audit": ["AUD-0039", "AUD-0036"] },
+    { "code": "leg", "name_ar": "القانونية", "state": "active", "optional": true, "reason": "طلبتيها لشروط الموقع", "active_playbooks": ["LEG-05", "LEG-08"], "open_tasks": 1, "recent_audit": ["AUD-0041"] },
+    { "code": "fin", "name_ar": "المالية والمحاسبة", "state": "suggested", "optional": false, "reason": "بتسعّرين أول باقة وتحتاجين حساب الهامش قبل الإطلاق", "active_playbooks": [], "open_tasks": 0, "recent_audit": [],
+      "copy": { "activate": "فعّل المالية والمحاسبة" } },
+    { "code": "fun", "name_ar": "التمويل والمستثمرين", "state": "dormant", "optional": false, "reason": null, "active_playbooks": [], "open_tasks": 0, "recent_audit": [] },
+    { "code": "str", "name_ar": "الاستراتيجية", "state": "dormant", "optional": false, "reason": "خلصت مرحلة الفكرة", "active_playbooks": [], "open_tasks": 0, "recent_audit": [] },
+    { "code": "mkt", "name_ar": "البراند والتسويق والمحتوى", "state": "active", "optional": false, "reason": "مرحلة التأسيس", "active_playbooks": ["MKT-01", "MKT-02", "MKT-03", "MKT-12", "MKT-17"], "open_tasks": 3, "recent_audit": ["AUD-0042", "AUD-0038"] },
+    { "code": "sal", "name_ar": "المبيعات", "state": "dormant", "optional": false, "reason": "تتفعل بالمرحلة ④", "active_playbooks": [], "open_tasks": 0, "recent_audit": [] },
+    { "code": "cs", "name_ar": "خدمة العملاء", "state": "dormant", "optional": false, "reason": null, "active_playbooks": [], "open_tasks": 0, "recent_audit": [] },
+    { "code": "ops", "name_ar": "العمليات", "state": "dormant", "optional": false, "reason": null, "active_playbooks": [], "open_tasks": 0, "recent_audit": [] },
+    { "code": "hr", "name_ar": "الموارد البشرية", "state": "dormant", "optional": false, "reason": null, "active_playbooks": [], "open_tasks": 0, "recent_audit": [] },
+    { "code": "tec", "name_ar": "التقنية والموقع والأمن", "state": "active", "optional": false, "reason": "مرحلة التأسيس", "active_playbooks": ["TEC-02", "TEC-03"], "open_tasks": 1, "recent_audit": ["AUD-0037", "AUD-0034"] },
+    { "code": "prd", "name_ar": "المنتج والابتكار", "state": "dormant", "optional": false, "reason": "خلصت مقابلات العملاء", "active_playbooks": [], "open_tasks": 0, "recent_audit": [] }
+  ],
+  "tasks": [
+    { "id": "TSK-0015", "title": "خطة إطلاق 14 يوم", "dept": "MKT", "column": "new", "due": "2026-10-28", "linked": null, "waiting_on": null },
+    { "id": "TSK-0016", "title": "قائمة أسعار أول باقة", "dept": "CEO", "column": "new", "due": null, "linked": null, "waiting_on": null },
+    { "id": "TSK-0012", "title": "نص صفحة الموقع", "dept": "MKT", "column": "in_progress", "due": "2026-10-22", "linked": null, "waiting_on": null },
+    { "id": "TSK-0013", "title": "الشروط والخصوصية", "dept": "LEG", "column": "in_progress", "due": "2026-10-25", "linked": null, "waiting_on": null },
+    { "id": "TSK-0014", "title": "إيميل باسم الشركة", "dept": "TEC", "column": "in_progress", "due": "2026-10-21", "linked": null, "waiting_on": "مزود الدومين" },
+    { "id": "TSK-0010", "title": "موافقة مالك العقار على النشاط من البيت", "dept": "FOR", "column": "in_progress", "due": "2026-10-17", "linked": null, "waiting_on": "مالك العقار" },
+    { "id": "TSK-0011", "title": "تقديم طلب الترخيص", "dept": "FOR", "column": "waiting", "due": "2026-10-20", "linked": null, "waiting_on": null },
+    { "id": "TSK-0017", "title": "قرار نشر بوست «قريباً»", "dept": "MKT", "column": "waiting", "due": "2026-10-19", "linked": "APR-0012", "waiting_on": null },
+    { "id": "TSK-0007", "title": "خريطة الأوراق", "dept": "FOR", "column": "done", "due": "2026-10-15", "linked": null, "waiting_on": null },
+    { "id": "TSK-0008", "title": "هوية البراند", "dept": "MKT", "column": "done", "due": "2026-10-13", "linked": "DEC-0002", "waiting_on": null },
+    { "id": "TSK-0009", "title": "حجز الدومين", "dept": "TEC", "column": "done", "due": "2026-10-12", "linked": null, "waiting_on": null }
+  ],
+  "numbers": {
+    "hidden": false,
+    "cash_signal": { "value": "yellow", "source": "COMPANY.md · 2026-10-14" },
+    "items": [
+      { "label": "الكاش المتوفر", "value": 890, "currency": "KWD", "source": "من بياناتك · 2026-10-14", "formula": null, "tag": null, "from": null },
+      { "label": "كم شهر يكفي الكاش", "value": 4.1, "unit": "شهر", "source": null, "formula": "الكاش 890 ÷ (المصاريف الشهرية 217 − الإيراد الشهري 0) = 4.1", "tag": "تخمين", "from": null },
+      { "label": "الإيراد الشهري", "value": 0, "currency": "KWD", "source": "من بياناتك · 2026-10-14", "formula": null, "tag": null, "from": null },
+      { "label": "المصاريف الشهرية", "value": 217, "currency": "KWD", "source": "من بياناتك · 2026-10-14", "formula": null, "tag": null, "from": null },
+      { "label": "العملاء الدافعين", "value": null, "unit": "عميل", "source": "COMPANY.md · الحقل فاضي", "formula": null, "tag": null, "from": null }
+    ]
+  },
+  "health": {
+    "date": "2026-10-15", "source": "outputs/2026-10-15-ceo-13-health-check.md",
+    "dims": [
+      { "key": "direction", "label": "الاتجاه", "signal": "yellow", "previous": "grey" },
+      { "key": "customers", "label": "العملاء والمبيعات", "signal": "grey", "previous": "grey" },
+      { "key": "offer", "label": "العرض والمنتج", "signal": "yellow", "previous": "red" },
+      { "key": "cash", "label": "الكاش والمالية", "signal": "yellow", "previous": "yellow" },
+      { "key": "operations", "label": "العمليات", "signal": "green", "previous": "green" },
+      { "key": "founder", "label": "المؤسس والفريق", "signal": "grey", "previous": null },
+      { "key": "compliance", "label": "التراخيص والامتثال", "signal": "yellow", "previous": "yellow" },
+      { "key": "governance", "label": "الحوكمة والأمن", "signal": "green", "previous": "green" }
+    ]
+  },
+  "decisions": [
+    { "id": "DEC-0005", "date": "2026-10-16", "title": "نأجل اشتراك برنامج التصميم لين يصدر الترخيص", "status": "ساري" },
+    { "id": "DEC-0004", "date": "2026-10-14", "title": "المرحلة ② تأسيس", "status": "ساري" },
+    { "id": "DEC-0003", "date": "2026-10-14", "title": "الشكل: شركة شخص واحد من البيت", "status": "ساري" },
+    { "id": "DEC-0002", "date": "2026-10-12", "title": "الاسم: «سارة للتصميم»", "status": "ساري" },
+    { "id": "DEC-0001", "date": "2026-10-09", "title": "نكمل الفكرة بعد 5 مقابلات عملاء", "status": "تمت مراجعته" }
+  ],
+  "calendar": [
+    { "id": "CAL-0002", "title": "آخر يوم لعرض تجديد الدومين", "type": "اشتراك", "date": "2026-10-20", "days_left": 2, "status": null },
+    { "id": "CAL-0003", "title": "تصوير أعمال للموقع", "type": "موعد", "date": "2026-10-23", "days_left": 5, "status": "confirmed" },
+    { "id": "CAL-0004", "title": "مكالمة مع أول عميلة محتملة", "type": "موعد", "date": "2026-10-27", "days_left": 9, "status": "proposed" },
+    { "id": "CAL-0005", "title": "تجديد اشتراك البريد", "type": "اشتراك", "date": "2026-12-01", "days_left": 44, "status": null }
+  ],
+  "audit": [
+    { "id": "AUD-0043", "time": "2026-10-18T10:45", "event": "الـCEO حدّث الداشبورد", "ref": null, "result": "ما طلع شي برا" },
+    { "id": "AUD-0042", "time": "2026-10-18T10:42", "event": "التسويق جهّز بوست «قريباً»", "ref": "APR-0012", "result": "بانتظار موافقتك" },
+    { "id": "AUD-0041", "time": "2026-10-18T09:15", "event": "القانونية كتبت مسودة الشروط", "ref": "TSK-0013", "result": "ما طلع شي برا" },
+    { "id": "AUD-0040", "time": "2026-10-17T18:20", "event": "الـCEO اقترح تفعيل المالية", "ref": null, "result": "بانتظار ردك" },
+    { "id": "AUD-0039", "time": "2026-10-17T18:03", "event": "التأسيس جهّز خطوات الترخيص", "ref": "TSK-0011", "result": "بانتظارك" },
+    { "id": "AUD-0038", "time": "2026-10-17T11:20", "event": "التسويق سلّم هوية البراند", "ref": "TSK-0008", "result": "منتهية" },
+    { "id": "AUD-0037", "time": "2026-10-16T16:05", "event": "التقنية طلبت إيميل الشركة", "ref": "TSK-0014", "result": "بانتظار مزود الدومين" },
+    { "id": "AUD-0036", "time": "2026-10-16T09:40", "event": "حارس الإجراءات فحص سجل الترخيص", "ref": null, "result": "خطوة وحدة تغيرت" },
+    { "id": "AUD-0035", "time": "2026-10-16T09:10", "event": "جمّدتي بطاقة الاشتراك", "ref": "APR-0011", "result": "مجمّدة" },
+    { "id": "AUD-0034", "time": "2026-10-15T14:30", "event": "التقنية حجزت الدومين بعد موافقتك", "ref": "TSK-0009", "result": "تم مع الدليل" }
+  ],
+  "guard": { "stale_unchecked": 0, "changed": 1, "unreachable": 0, "to_verify": 2 },
+  "ceo_messages": [
+    { "date": "2026-10-17", "text": "أهم شي هالأسبوع: طلب الترخيص، لأنه أول شرط لبوابة المرحلة", "source": "outputs/2026-10-17-ceo-07-weekly-brief.md" },
+    { "date": "2026-10-17", "text": "الكاش يكفي تقريباً 4 شهور على مصاريفك الحالية [تخمين، التفصيل بـFIN-03]", "source": "outputs/2026-10-17-ceo-07-weekly-brief.md" },
+    { "date": "2026-10-17", "text": "أقترح نفعّل المالية عشان نسعّر أول باقة بهامشها", "source": "outputs/2026-10-17-ceo-07-weekly-brief.md" },
+    { "date": "2026-10-17", "text": "الأسبوع القادم: نص صفحة الموقع والشروط والخصوصية", "source": "outputs/2026-10-17-ceo-07-weekly-brief.md" },
+    { "date": "2026-10-17", "text": "الأسبوع القادم: نختار طريقة التحصيل من العملاء", "source": "outputs/2026-10-17-ceo-07-weekly-brief.md" }
+  ]
+}

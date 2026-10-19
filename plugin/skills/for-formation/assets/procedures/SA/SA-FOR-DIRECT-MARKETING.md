@@ -1,0 +1,50 @@
+---
+id: SA-FOR-DIRECT-MARKETING
+schema_version: "0.2.1"
+country: SA
+emirate: null
+jurisdiction: mainland
+title_ar: "الرسائل والمكالمات التسويقية المباشرة"
+service_ar: "Regulations for Curbing SPAM Messages and Calls"
+authority_ar: "هيئة الاتصالات والفضاء والتقنية · والهيئة السعودية للبيانات والذكاء الاصطناعي للبيانات الشخصية"
+legal_form: []
+official_url: "https://www.cst.gov.sa/en/regulations-and-licenses/regulations/Document-522"
+portal_url: null
+applies_to: [direct_marketing]
+fields:
+  fee:
+    amount: null
+    currency: SAR
+    note_ar: "تنظيمات التزامات، مو خدمة برسوم"
+    source_url: "https://www.cst.gov.sa/en/regulations-and-licenses/regulations/Document-522"
+    source_quote: ""
+  duration:
+    text_ar: "التزام مستمر"
+    days: null
+  documents: []
+  conditions:
+    - "قرار الاعتماد 493/1444 بتاريخ 17/10/2022: «the document referred to in paragraph (First) hereinabove shall come into force after (90) days as of the date hereof» (https://www.cst.gov.sa/en/regulations-and-licenses/decisions/Regulation-469)"
+    - "التزامات المرسل نفسها (الموافقة، الإلغاء، الأوقات، تسجيل اسم المرسل) بنص الوثيقة، وما انقرت بهالجولة"
+    - "لو الرسائل تستخدم بيانات شخصية، نظام حماية البيانات الشخصية ينطبق كمان (SA-FOR-REF-PRIVACY)"
+legal_refs:
+  - "تنظيمات الحد من الرسائل والمكالمات الاقتحامية · قرار هيئة الاتصالات والفضاء والتقنية رقم 493/1444 بتاريخ 17/10/2022"
+status: likely
+source_quality: official
+last_verified: "2026-10-18"
+verified_by: "فريق الحزمة"
+verification_method: human
+max_age_days: 90
+change_log:
+  - date: "2026-10-18"
+    change: "إنشاء من قراءة مباشرة لصفحة الوثيقة وصفحة قرار اعتمادها على موقع الهيئة · الحالة likely لأن ملف الوثيقة (PDF) ما انقرا، والتزامات المرسل من مصادر ثانوية"
+    by: "فريق الحزمة"
+notes_ar: "lang:en (service_ar والاقتباسات بلغة الصفحة) · مصادر ثانوية (صحف وأخبار 2022) تذكر: اللاحقة «AD-» بعد اسم المرسل بالرسائل الدعائية، ومنع الإرسال من 10 بالليل إلى 8 الصبح، وتسجيل أسماء المرسلين عن طريق مزود الرسائل [مرجح · ثانوي، تأكد من نص الوثيقة] · تحليلات مكاتب محاماة تقول اللائحة التنفيذية لنظام البيانات الشخصية (2023) تشترط الموافقة للتسويق المباشر، والهيئة طرحت تعديلات عليها للاستطلاع بأكتوبر 2026 [مرجح · ثانوي] · الوثيقة تحل محل وثيقة أقدم بقرار 395 لعام 1439هـ حسب نص الفهرس"
+---
+
+# الرسائل والمكالمات التسويقية · السعودية
+
+> **[مرجح]** من صفحة الوثيقة وقرارها على موقع هيئة الاتصالات، ونص الالتزامات ما انقرا · آخر تحقق 18/10/2026
+
+- لو بترسل رسائل SMS أو إيميل أو تتصل بعملاء لتسويق، فيه تنظيمات من هيئة الاتصالات للحد من الرسائل الاقتحامية (قرار 493/1444)
+- لو تستخدم بيانات شخصية للتسويق، نظام حماية البيانات الشخصية ينطبق كمان
+- اقرا الوثيقة نفسها قبل أول حملة، وراجعها مع مختص

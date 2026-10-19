@@ -1,0 +1,140 @@
+رخصة الحزمة: رخصة مختلطة
+Licensing of this repository: mixed licence
+
+هذا المستودع فيه نوعان من المحتوى، ولكل نوع رخصته
+This repository contains two kinds of material, each under its own licence
+
+================================================================
+1. ما يخضع لرخصة MIT (الكود)
+   Covered by the MIT License (code)
+================================================================
+
+- dashboard/**            (HTML وCSS وJavaScript للداشبورد، ما عدا dashboard/fonts/ · القسم 5)
+- tools/**
+- plugin/hooks/**
+- .claude-plugin/**
+- templates/*.json        (ومنها org.schema.json)
+- templates/*.yaml        (ومنها procedure.schema.yaml)
+- templates/shirkati/*.json
+- أي ملف برمجي آخر بامتداد .py أو .js أو .sh أو .ts
+  Any other source file (.py, .js, .sh, .ts)
+
+----------------------------------------------------------------
+MIT License
+
+Copyright (c) 2026 Mohammad AlHuwaidi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+----------------------------------------------------------------
+
+================================================================
+2. ما يخضع لرخصة CC BY-NC-SA 4.0 (النصوص)
+   Covered by CC BY-NC-SA 4.0 (text and content)
+================================================================
+
+كل ما ليس في القائمة (1)، ومنه:
+Everything not listed in section 1, including:
+
+- plugin/skills/**        (ملفات SKILL.md والـplaybooks)
+- plugin/agents/**
+- data/**                 (قاعدة الإجراءات الحكومية، ونسختها داخل plugin/skills/)
+- guides/**
+- docs/**
+- templates/*.md وtemplates/shirkati/*.md
+- README.md
+
+شاهين (MH Shaheen™) © 2026 محمد الهويدي، مرخّصة بموجب رخصة المشاع الإبداعي
+نَسب المُصنَّف - غير تجاري - الترخيص بالمثل 4.0 الدولية
+
+"MH Shaheen™" © 2026 Mohammad AlHuwaidi, licensed under the
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License
+
+ملخص الرخصة (الملخص لا يحل محل النص القانوني):
+- يجوز النسخ وإعادة التوزيع والتعديل بلا مقابل
+- يجب ذكر المؤلف ورابط الرخصة وبيان التعديلات إن وُجدت
+- لا يجوز بيع الحزمة أو أي جزء منها، ولا تضمينها في منتج أو خدمة مدفوعة تُقدَّم للغير
+- ما يُعدَّل ويُنشر يكون بنفس الرخصة
+
+Summary (not a substitute for the legal code):
+- Share and adapt freely
+- Attribution required, with a link to the licence and an indication of changes
+- NonCommercial: no selling of the kit or any part of it, and no inclusion in a
+  paid product or paid service offered to others
+- ShareAlike: published adaptations must carry the same licence
+
+النص القانوني الكامل · Full legal code:
+https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+
+2-أ. إذن إضافي من المؤلف (خارج رخصة المشاع الإبداعي وبالإضافة إليها)
+     Additional permission from the author
+
+يجوز لأي شخص أو منشأة، ولو كانت ربحية، تثبيت الحزمة ونسخها وتعديلها لاستخدامها
+داخلياً في إدارة أعمالها الخاصة · لا يشمل هذا الإذن بيع الحزمة أو أي جزء منها،
+ولا تقديمها أو تقديم نسخة معدلة منها للغير مقابل أجر
+Any person or business, including a for-profit business, may install, copy and
+adapt the kit for internal use in running its own business · this permission does
+not cover selling the kit or any part of it, or providing it or a modified copy
+of it to others for a fee
+
+================================================================
+3. بيانات الإجراءات الحكومية
+   Government procedure data
+================================================================
+
+المعلومات الحكومية في data/procedures/ ونسختها داخل plugin/skills/for-formation/assets/procedures/ منقولة من المصادر الرسمية المذكورة في كل سجل،
+وهي ملك جهاتها · الرخصة أعلاه تنطبق على الصياغة والتنظيم والتجميع فقط
+Government information in data/procedures/ and its copy inside plugin/skills/ is taken from the official sources cited in
+each record and remains with those authorities · the licence above covers our
+wording, structure and compilation only
+
+================================================================
+4. الإسناد لأعمال الغير
+   Third-party attribution
+================================================================
+
+انظر ملف NOTICE · See the NOTICE file
+
+================================================================
+5. الخطوط
+   Fonts
+================================================================
+
+الخطوط في dashboard/fonts/ ليست من عملنا، وتخضع لرخصة SIL Open Font License 1.1
+كما في ملف الرخصة المرفق مع كل خط (OFL-*.txt)، والخطوط المضمّنة داخل ملفات HTML
+تخضع للرخصة نفسها
+Fonts in dashboard/fonts/ are not our work and remain under the SIL Open Font
+License 1.1 as stated in the OFL-*.txt file shipped with each font, including
+when embedded inside HTML files
+
+================================================================
+6. النص القانوني الكامل
+   Full legal text
+================================================================
+
+- رخصة MIT: نصها الكامل في القسم 1 أعلاه
+- رخصة CC BY-NC-SA 4.0: نصها القانوني الكامل في الرابط الرسمي
+  https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+  وهذا الرابط جزء من هذا الإشعار
+- عند أي اختلاف بين الملخص العربي والنص القانوني الرسمي، يُعتمد النص القانوني الرسمي
+
+- MIT License: full text in section 1 above
+- CC BY-NC-SA 4.0: full legal code at the official URL above, which forms part
+  of this notice
+- In case of any difference between the Arabic summary and the official legal
+  code, the official legal code prevails

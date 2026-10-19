@@ -1,0 +1,121 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "org.schema.json",
+  "title": "org.json · department states, stage and activation log",
+  "description": "Written only by CEO-03 after an explicit owner decision · activation is internal and reversible (Type 2)",
+  "type": "object",
+  "required": ["schema_version", "stage", "stage_confirmed", "departments", "activation_log"],
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": { "type": "string", "pattern": "^\\d+\\.\\d+\\.\\d+$" },
+    "company_file": { "type": "string", "const": "COMPANY.md" },
+    "stage": {
+      "description": "1 idea · 2 formation · 3 launch · 4 first customers · 5 organise · 6 expand · null before onboarding",
+      "type": ["integer", "null"], "minimum": 1, "maximum": 6
+    },
+    "stage_confirmed": { "type": "boolean" },
+    "stage_history": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "from", "to", "reason", "decision_id"],
+        "additionalProperties": false,
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "from": { "type": ["integer", "null"], "minimum": 1, "maximum": 6 },
+          "to": { "type": "integer", "minimum": 1, "maximum": 6 },
+          "reason": { "type": "string" },
+          "gate_skipped": { "type": "boolean", "description": "true when the owner moved stage without meeting the exit gate, by written decision" },
+          "decision_id": { "type": "string", "pattern": "^DEC-\\d{4}$" }
+        }
+      }
+    },
+    "settings": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "auto_activate_stage_departments": { "type": "boolean", "default": false },
+        "max_activation_suggestions_per_week": { "type": "integer", "minimum": 0, "default": 1 },
+        "declined_suggestion_cooldown_days": { "type": "integer", "minimum": 0, "default": 30 },
+        "approval_expiry_hours": { "type": "integer", "minimum": 1, "maximum": 72, "default": 24 }
+      }
+    },
+    "departments": {
+      "type": "object",
+      "required": ["ceo", "for", "leg", "fin", "fun", "str", "mkt", "sal", "cs", "ops", "hr", "tec", "prd"],
+      "additionalProperties": false,
+      "patternProperties": {
+        "^(ceo|for|leg|fin|fun|str|mkt|sal|cs|ops|hr|tec|prd)$": { "$ref": "#/$defs/department" }
+      }
+    },
+    "quality_checks": {
+      "type": "object",
+      "additionalProperties": false,
+      "patternProperties": {
+        "^[A-Z]{2,3}-\\d{2}$": {
+          "type": "object",
+          "required": ["trigger", "enabled"],
+          "additionalProperties": false,
+          "properties": {
+            "trigger": { "type": "string" },
+            "enabled": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "suggestions": {
+      "description": "Activation suggestions made by CEO-03 and the owner's answer · one line per department · lines of one bundled message share bundle_id and count as one suggestion",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "dept", "trigger", "answer"],
+        "additionalProperties": false,
+        "properties": {
+          "date": { "type": "string", "format": "date" },
+          "dept": { "type": "string", "pattern": "^(ceo|for|leg|fin|fun|str|mkt|sal|cs|ops|hr|tec|prd)$", "description": "ceo for a dormant CEO office playbook (CEO-08 to CEO-11, CEO-13)" },
+          "bundle_id": { "type": ["string", "null"], "pattern": "^BND-\\d{4}$", "description": "same value for every line of one bundled message" },
+          "playbooks": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z]{2,3}-\\d{2}$" } },
+          "trigger": { "type": "string" },
+          "answer": { "type": "string", "enum": ["activate", "later", "no", "pending"] },
+          "no_repeat_until": { "type": ["string", "null"], "format": "date" }
+        }
+      }
+    },
+    "activation_log": {
+      "description": "Append only · never edit or delete an entry",
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["date", "dept", "from", "to", "by", "reason", "decision_id"],
+        "additionalProperties": false,
+        "properties": {
+          "date": { "type": "string", "format": "date-time" },
+          "dept": { "type": "string" },
+          "from": { "$ref": "#/$defs/state" },
+          "to": { "$ref": "#/$defs/state" },
+          "by": { "type": "string", "description": "owner, or install for the initial CEO line (from active to active)" },
+          "reason": { "type": "string" },
+          "playbooks": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z]{2,3}-\\d{2}$" } },
+          "decision_id": { "type": ["string", "null"], "pattern": "^DEC-\\d{4}$" }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "state": { "type": "string", "enum": ["active", "dormant", "suspended"] },
+    "department": {
+      "type": "object",
+      "required": ["name_ar", "state", "optional", "since", "by", "reason", "active_playbooks"],
+      "additionalProperties": false,
+      "properties": {
+        "name_ar": { "type": "string" },
+        "state": { "$ref": "#/$defs/state" },
+        "optional": { "type": "boolean", "description": "true for LEG only · never suggested automatically at an exit gate" },
+        "since": { "type": ["string", "null"], "format": "date-time" },
+        "by": { "type": ["string", "null"] },
+        "reason": { "type": ["string", "null"] },
+        "active_playbooks": { "type": "array", "items": { "type": "string", "pattern": "^[A-Z]{2,3}-\\d{2}$" } }
+      }
+    }
+  }
+}

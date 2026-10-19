@@ -1,0 +1,4 @@
+dashboard/template.html -text
+plugin/skills/ceo-office/assets/dashboard/template.html -text
+*.ttf binary
+*.png binary

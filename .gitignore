@@ -1,0 +1,9 @@
+dist/
+.DS_Store
+._*
+Thumbs.db
+.claude/
+.env*
+*.local.*
+__pycache__/
+/shirkati/
