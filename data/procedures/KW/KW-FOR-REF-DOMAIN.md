@@ -22,14 +22,18 @@ fields:
     text_ar: "غير منشور"
     days: null
   documents:
-    - "غير منشور: المستندات عند المسجّل المعتمد"
+    - "غير منشور بالتفصيل: الصفحة تقول «Upload all required documents and complete the payment» بدون قائمة"
   conditions:
-    - "النطاق .com.kw للكيانات التجارية المسجلة (قراءة 16/10/2026، صياغتنا)"
-    - "البحث عن الدومين من www.kw، والتسجيل عن طريق مسجّل معتمد"
+    - ".com.kw: reserved for registered commercial entities"
+    - "Domain name registration is processed by CITRA-accredited registrars"
+    - "To Register, head to https://www.kw"
+    - "Search for an available domain name"
+    - "Choose one of the accredited registrars to proceed"
+    - "Upload all required documents and complete the payment"
 legal_refs: []
-status: likely
+status: confirmed
 source_quality: official
-last_verified: "2026-10-16"
+last_verified: "2026-10-20"
 verified_by: "فريق الحزمة"
 verification_method: human
 max_age_days: 90
@@ -40,13 +44,16 @@ change_log:
   - date: "2026-10-18"
     change: "توحيد الوسوم حسب docs/procedure-tags.md 0.1.0: wants_kw_domain ← wants_local_domain · ولا معلومة ثانية تغيرت"
     by: "فريق الحزمة"
-notes_ar: "الصفحة تذكر مسجّلين معتمدين، والحزمة ما ترشح واحد منهم · الصفحة بالإنجليزي"
+  - date: "2026-10-20"
+    change: "إعادة قراءة صفحة الهيئة اليوم ونقل النصوص بحرفها (الصفحة بالإنجليزي): نطاق .com.kw للكيانات التجارية المسجلة · التسجيل عن طريق مسجّلين معتمدين · خطوات التسجيل الثلاث · الشروط صارت بنصها بدل صياغتنا · الحالة من likely إلى confirmed"
+    by: "فريق الحزمة"
+notes_ar: "الصفحة تعرض 5 مسجّلين معتمدين (اطلاع 20/10/2026)، والحزمة ما ترشح واحد منهم · الرسوم والمستندات عند المسجّل اللي تختاره · الصفحة بالإنجليزي"
 ---
 
 # مرجع: دومين .com.kw للشركة · الكويت
 
-> سجل مرجعي بدون خطوات · [مرجح] · آخر قراءة 16/10/2026
+> سجل مرجعي بدون خطوات · [مؤكد] · تحقق 20/10/2026
 
 - دومين .com.kw للكيانات التجارية المسجلة، يعني تحتاج ترخيصك أول
-- ابحث عن الاسم من www.kw، وسجّله عن طريق مسجّل معتمد من هيئة الاتصالات
+- ابحث عن الاسم من www.kw، واختر مسجّل معتمد من هيئة الاتصالات، وارفع المستندات وادفع عنده
 - الرسوم والمستندات عند المسجّل

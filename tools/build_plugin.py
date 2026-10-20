@@ -89,6 +89,39 @@ def check_refs():
     return missing
 
 
+def check_template_pin():
+    """G8: CSP hashes = the template's inline blocks · CEO-06 pins the same CSP line and fingerprint"""
+    import base64, hashlib
+    tpl = (ROOT / "dashboard/template.html").read_bytes().decode("utf-8")
+    pb = (SKILLS / "ceo-office/playbooks/ceo-06-dashboard.md").read_bytes().decode("utf-8")
+    bad = 0
+    csp = [l for l in tpl.split("\n") if "Content-Security-Policy" in l]
+    if len(csp) != 1:
+        print(f"PIN template has {len(csp)} CSP lines, expected 1")
+        return 1
+    csp = csp[0].strip()
+    want = set(re.findall(r"'sha256-([A-Za-z0-9+/=]+)'", csp))
+    got = set()
+    for m in re.finditer(r"<(script|style)\b([^>]*)>(.*?)</\1>", tpl, re.S):
+        if 'type="application/json"' in m.group(2):
+            continue
+        got.add(base64.b64encode(hashlib.sha256(m.group(3).encode("utf-8")).digest()).decode())
+    if want != got:
+        print(f"PIN CSP {sorted(want)} != inline blocks {sorted(got)}")
+        bad += 1
+    if csp not in [l.strip() for l in pb.split("\n")]:
+        print("PIN CEO-06 CSP line differs from the template")
+        bad += 1
+    t = tpl.replace("\r\n", "\n")
+    t = re.sub(r'(<script type="application/json" id="data">).*?(</script>)', r"\1@@DATA@@\2", t, count=1, flags=re.S)
+    fp = hashlib.sha256(t.encode("utf-8")).hexdigest()
+    if f"`{fp}`" not in pb:
+        print(f"PIN CEO-06 fingerprint is not {fp}")
+        bad += 1
+    print(f"TEMPLATE PIN {'OK' if not bad else 'FAIL'} · {fp}")
+    return bad
+
+
 def release_files():
     files = []
     for p in sorted((ROOT / "plugin").rglob("*")):
@@ -133,7 +166,7 @@ if __name__ == "__main__":
         sys.exit("--zip always copies first, drop --check")
     if "--check" not in sys.argv:
         copy_all()
-    missing = check_refs()
+    missing = check_refs() + check_template_pin()
     if missing:
         sys.exit(1)
     if "--zip" in sys.argv:

@@ -1,10 +1,10 @@
 ---
 name: ceo-06-dashboard
-description: "Builds the local interactive dashboard of the company from the files in the company folder; reads the profile, stage, departments, tasks, approvals, decisions, calendar, audit log and the procedure guard log, writes a snapshot dashboard-data.json, and embeds it into the offline dashboard template as dashboard.html with no network calls, no external code and buttons that only copy a command for the chat; shows only numbers the owner entered, each with its source or formula, and never publishes or shares the file; use when the user says حدّث الداشبورد, وريني الداشبورد, لوحة الشركة, dashboard, show me the board, after the weekly brief, or after onboarding when the owner wants to see the office · الداشبورد: لوحة تفاعلية على جهازك من ملفات شركتك، بدون إنترنت وبدون أي إرسال"
+description: "Builds the local interactive dashboard of the company from the files in the company folder; reads the profile, stage, departments, tasks, approvals, decisions, calendar, audit log and the procedure guard log, writes a snapshot dashboard-data.json, and embeds it into the offline dashboard template as dashboard.html with no network calls, no external code and buttons that only copy a command for the chat; shows only numbers the owner entered, each with its source or formula, and never publishes or shares the file; use when the user says حدّث الداشبورد, وريني الداشبورد, لوحة الشركة, dashboard, show me the board, after the weekly brief, automatically once when the owner says ابدأ before the first onboarding question (it opens the browser by itself), and quietly after every onboarding answer and every important step without reopening · الداشبورد: لوحة تفاعلية على جهازك من ملفات شركتك، بدون إنترنت وبدون أي إرسال"
 license: CC-BY-NC-SA-4.0
 metadata:
   code: "CEO-06"
-  version: "0.2.2"
+  version: "0.2.4"
   dept: "ceo"
   stage: "all"
   default_state: "active"
@@ -22,7 +22,8 @@ metadata:
 **تشتغل لما:**
 - المستخدم يقول: حدّث الداشبورد، وريني الداشبورد، لوحة الشركة، dashboard
 - بعد كل موجز أسبوعي (CEO-07) · تلقائياً بآخر الموجز
-- بعد جلسة التعارف (CEO-01) لو المستخدم يبي يشوف مكتبه
+- **أول فتح (تلقائي):** بأول جلسة، أول ما يقول «ابدأ» وقبل السؤال الأول، بطلب من CEO-01 · مرة وحدة بس
+- **تحديث هادي (تلقائي):** بآخر أي رد فيه خطوة مهمة، حسب قسم «الداشبورد يمشي مع صاحب الشركة» بـ`SKILL.md`
 - المستخدم لصق أمر من الداشبورد بالشات (مثل «انقل TSK-0014 إلى تحت التنفيذ» أو «اعتمد APR-0012») ← **مو هني**: الأمر يروح لصاحبه (القسم تحت)، وبعد ما يتنفذ تحدّث الداشبورد
 
 **ما تشتغل لما:**
@@ -39,6 +40,7 @@ metadata:
 | الملف | شنو تاخذ منه | لو ناقص |
 |---|---|---|
 | `COMPANY.md` | الاسم · الدولة والإمارة · صيغة الخطاب · قسم «الأرقام» بمصادره | لوحة «مثال افتراضي» (الخطوة 2) |
+| `onboarding.json` | تقدم التعارف: `answered` · `total` · `done` · `known` (نصوص قصيرة) | ما فيه شريط تأسيس |
 | `org.json` | المرحلة وتأكيدها · حالة كل إدارة و`optional` و`active_playbooks` · `suggestions` اللي جوابها `pending` | كل الإدارات خاملة ما عدا مكتب الـCEO |
 | `tasks.md` | كل المهام ما عدا «ملغاة» | عمود المهام فاضي |
 | `approvals.md` | البطاقات «بانتظار موافقتك» و«مجمّدة» | لوحة الموافقات «ما فيه شي ينتظرك» |
@@ -61,7 +63,7 @@ metadata:
 ## الخطوات
 
 1. **اقرا الملفات** بالجدول فوق · لا تعدّل ولا ملف منها
-2. **لو `COMPANY.md` فاضي:** ابنِ لوحة بـ`sample: true` وبيانات قالب فاضية، وفوقها شارة «مثال افتراضي، ما فيه بيانات شركتك بعد» · وقل «نسوي التعارف أول عشان اللوحة تصير لشركتك؟»
+2. **أثناء التعارف** (`onboarding.json` موجود و`done` مو `true`): ابنِ اللوحة بـ`sample: false` وحقل `onboarding` منسوخ منه كما هو (بحد 12 عنصر بـ`known`)، والقالب يعرض الترحيب وشريط «تأسيس شركتك» ويحدّث الصفحة بروحه كل 5 ثواني لين يخلص · **لو `COMPANY.md` فاضي وما فيه تعارف:** ابنِ لوحة بـ`sample: true` وبيانات قالب فاضية، وفوقها شارة «مثال افتراضي، ما فيه بيانات شركتك بعد» · وقل «نسوي التعارف أول عشان اللوحة تصير لشركتك؟»
 3. **ابنِ اللقطة** `dashboard-data.json` بالصيغة تحت (المخرج أ)، بهالقواعد:
    - **الإدارات (13 بالضبط):** `state` من `org.json`، و`suggested` لو فيه اقتراح `pending` لها · القانونية `optional: true` · العدّ يتطابق: مكتب الـCEO + الفعّالة + المقترحة + الخاملة + الموقوفة = 13
    - **المرحلة وبوابتها والخطوة القادمة:** اطلب من CEO-03 حالة بوابة الخروج والخطوة القادمة **بوضع القراءة** (بدون اقتراحات تفعيل وبدون كتابة) · لا تحكم على البوابة بنفسك
@@ -79,7 +81,7 @@ metadata:
    - **رسائل الـCEO:** آخر 5 أسطر من «بسطرين» و«أولويات الأسبوع القادم» بآخر موجز أسبوعي، مع اسم الملف · ما تنقل كلام من المحادثة نفسها
    - **التواريخ** داخل JSON بصيغة `YYYY-MM-DD` · القالب يعرضها `DD/MM/YYYY`
 4. **قلّل البيانات:** اللوحة تعرض اللي يحتاجه صاحب الشركة بس
-   - أي رقم تلفون أو إيميل أو رقم هوية أو حساب أو بطاقة يطلع داخل عنوان مهمة أو موعد: يتبدل بـ«•••»
+   - أي رقم تلفون أو إيميل أو رقم هوية أو حساب أو بطاقة يطلع داخل عنوان مهمة أو موعد أو قيمة بـ`onboarding.known`: يتبدل بـ«•••»
    - لو جاوب السؤال 2 «اخفِ الأرقام»: لوحة الأرقام «مخفية بطلبك»
 5. **افحص اللقطة قبل الكتابة:**
    - JSON صالح ويطابق الصيغة (المخرج أ) · الإدارات 13 · كل بطاقة وقرار ومهمة رقمها بالصيغة الصحيحة (`APR-0000`، `DEC-0000`، `TSK-0000`، `AUD-0000`، `CAL-0000`)
@@ -90,15 +92,20 @@ metadata:
    - انسخ القالب `assets/dashboard/template.html` كما هو، وبدّل **محتوى** بلوك `<script type="application/json" id="data">` بس، ولا شي ثاني بالقالب
    - داخل البلوك: بدّل كل `<` بـ`\u003c` عشان أي نص من الملفات ما يقدر يقفل البلوك أو يفتح كود · بعد التبديل تأكد إن البلوك ما فيه ولا `<`، ولو فيه وقّف وقل «بيانات الداشبورد فيها خلل»
    - **فحص أمان القالب قبل التوليد** (القيم تحت لقالب هالإصدار بالضبط، وتتحدث هني مع أي تعديل على القالب):
-     - **البصمة** (لو أداة تشغيل الكود متوفرة): اقرا القالب نص UTF-8 · بدّل كل CRLF بـLF · بدّل كل اللي بين `<script type="application/json" id="data">` وأول `</script>` بعده بالنص `@@DATA@@` · احسب SHA-256 للنتيجة (بايتات UTF-8) · لازم تطلع بالضبط: `65d24516b1c53690897bda2ee3b6c42d382c6cdd813792d87bf29b244ee307f8` · وبعد ما تكتب `dashboard.html` احسب بصمته بنفس الطريقة، ولازم تطلع نفس الرقم
+     - **البصمة** (لو أداة تشغيل الكود متوفرة): اقرا القالب نص UTF-8 · بدّل كل CRLF بـLF · بدّل كل اللي بين `<script type="application/json" id="data">` وأول `</script>` بعده بالنص `@@DATA@@` · احسب SHA-256 للنتيجة (بايتات UTF-8) · لازم تطلع بالضبط: `365b144052a9200120f574e40ffeca0debca746f112f51f01c150b14cebbcf5f` · وبعد ما تكتب `dashboard.html` احسب بصمته بنفس الطريقة، ولازم تطلع نفس الرقم
+     - **بالتحديث الهادي بنفس الجلسة:** النسخ وتبديل البلوك والبصمة بأمر واحد بس لكل تحديث، مو أوامر متفرقة · سطر CSP والطبقة الثانية تنفحص بالقراءة بدون أوامر
      - **سطر CSP** (دايماً، حتى بدون أداة كود): بالقالب سطر واحد بس فيه `Content-Security-Policy`، يجي على طول بعد سطر `<meta charset="utf-8">`، ويطابق هالسطر حرف بحرف (مو بس فيه `default-src 'none'`):
        ```
-       <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-mzIE6MDoceiOriQuF1n1J9jkm08wZlpgRqun0pegmBk='; style-src 'sha256-uVBo/zVVjsMBarf32seFzi3sTeTD+riFY3tabDhGJpA=' 'sha256-74TXoUxGqX1H4pg+mUqcaPHixmanoh7Yi4eUdsFGT+s='; font-src data:; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types 'none'">
+       <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-e6oUAL2V1RRp6NRnD9h/nJZ6+lngJkyr1OR53+mgczI='; style-src 'sha256-QFpXPITkWGeu8PprG+vhHUOiPwsZvtfLp50zrTfg1M4=' 'sha256-74TXoUxGqX1H4pg+mUqcaPHixmanoh7Yi4eUdsFGT+s='; font-src data:; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types 'none'">
        ```
      - **طبقة ثانية بس** (ما تغني عن البصمة ولا عن سطر CSP): برا بلوك البيانات ما يكون فيه `fetch(` ولا `XMLHttpRequest` ولا `WebSocket` ولا `EventSource` ولا `sendBeacon` ولا `<form` ولا `<iframe` ولا `<link` ولا `@import` ولا `src="http`
      - لو أي فحص فشل: **لا تولّد الملف**، وقل «القالب متعدّل أو فيه خلل، ما ولّدت الداشبورد» واقترح يرجّع القالب من الحزمة الأصلية · ولا «تصلّح» القالب بنفسك
    - روابط داخل البيانات (مثلاً رابط كتبه المستخدم بمهمة) تبقى نص عادي، والقالب يعرضها كنص مو كرابط
-8. **قل للمستخدم شلون يفتحه** (المخرج ب): يفتح `dashboard.html` من مجلد «شركتي» بمتصفحه · بمسار claude.ai ممكن ينعرض جنب المحادثة [مرجح] · الأزرار تنسخ أمر بس، والتنفيذ بالشات
+8. **الفتح حسب الوضع:**
+   - **أول فتح، أو المستخدم طلب «وريني الداشبورد»:** لو أداة تشغيل الأوامر متوفرة، افتح `dashboard.html` بالمتصفح بنفسك بأمر الجهاز: Mac `open "dashboard.html"` · Windows `explorer.exe "dashboard.html"` · Linux `xdg-open "dashboard.html"` · الفتح داخلي (ملف على جهازه وما يتصل بأي مكان) وما يحتاج بطاقة · لو الأمر فشل أو الأداة مو متوفرة: قل له يفتح `dashboard.html` من مجلد «شركتي» بمتصفحه · بمسار claude.ai ممكن ينعرض جنب المحادثة [مرجح] · الأمر ينكتب كما هو من داخل مجلد «شركتي»، ولا تركّب المسار من اسم المجلد أو من أي نص بالملفات · بويندوز explorer.exe ممكن يرجّع رقم خروج 1 وهو انفتح، فلا تعيد الأمر، اسأله «انفتح؟»
+   - **أذونات الجهاز:** بأول فتح بس، قل سطر واحد: «بيطلع لك طلب إذن كل ما أحدّث الداشبورد، اختار Yes لهالمرة» · لا تقترح أبد «don't ask again» أو «Allow always» لأوامر عامة مثل python3 أو open، لأنها تفتح الباب لأي أمر بعدين
+   - **تحديث هادي:** لا تفتح المتصفح مرة ثانية · سطر واحد بآخر الرد (المخرج ب) · أثناء التعارف (CEO-01): ولا سطر
+   - الأزرار تنسخ أمر بس، والتنفيذ بالشات
 9. **اختم** بالخطوة القادمة من CEO-03 بسطر واحد
 
 **الأوامر الملصوقة من الداشبورد**
@@ -129,6 +136,7 @@ metadata:
     ]
   },
   "next_step": { "text": "نحدد سعر أول عرض", "playbook": "FIN-02" },
+  "onboarding": { "answered": 10, "total": 10, "done": true, "known": [] },
   "approvals": [
     { "id": "APR-0012", "title": "نشر بوست الإطلاق", "party": "إنستغرام", "cost": "لا شي", "risk": "low", "double": false, "expires": "2026-10-18T14:30", "status": "pending",
       "copy": { "approve": "اعتمد APR-0012", "modify": "عدّل APR-0012", "reject": "ارفض APR-0012" } }
@@ -167,13 +175,20 @@ metadata:
 (أرقام المثال خيالية)
 - `departments` فيها 13 عنصر دايماً (المثال مختصر) · `state` واحد من `active` · `suggested` · `dormant` · `suspended` · و`suggested` حالة عرض بس، مو حالة بـ`org.json`
 - `risk` واحد من `low` · `medium` · `high` · `critical` · و`column` واحد من `new` · `in_progress` · `waiting` · `done`
+- **حقل `onboarding` (اختياري، 19/10):** `answered` و`total` أرقام صحيحة · `done` true/false · `known` قائمة `{label, value}` نصوص قصيرة · لو ناقص أو `done: true` ما ينعرض الترحيب
 - **حقول 0.2.0:** `cash_signal.value` و`dims[].signal` و`previous` واحد من `green` · `yellow` · `red` · `grey` (من 🟢 🟡 🔴 ⚪) أو `null` · `health` = `null` لو ما فيه فحص · `dims` فيها 8 عناصر بالترتيب والمفاتيح: `direction` · `customers` · `offer` · `cash` · `operations` · `founder` · `compliance` · `governance` (المثال مختصر) · `calendar[].status` واحد من `proposed` · `confirmed` · `done` · `cancelled` · `no_show` أو `null` · `tasks[].waiting_on` نص أو `null` · `numbers.items[].from` كود المهارة (`FIN-02` · `FIN-06` · `PRD-07`) أو `null` لأرقام `COMPANY.md`
 
-**ب · رسالة بالشات بعد التوليد (3 أسطر بالكثير)**
+**ب · رسالة بالشات بعد التوليد**
+
+أول فتح أو «وريني الداشبورد» (3 أسطر بالكثير):
 ```
-حدّثت الداشبورد ✅ · افتح dashboard.html من مجلد «شركتي»
+فتحت لك الداشبورد بالمتصفح ✅ · هذا مكتبك، وبأعلاه «الخطوة القادمة»
 فيه: 2 بانتظار موافقتك · 1 إدارة مقترحة · 3 مهام بانتظارك
 الأزرار تنسخ الأمر بس، الصقه هني وأنا أكمّل
+```
+تحديث هادي (سطر واحد بآخر الرد):
+```
+حدّثت الداشبورد · سوّ تحديث للصفحة بالمتصفح عشان تشوف الجديد
 ```
 
 **ينكتب بـ:** `dashboard-data.json` و`dashboard.html` بمجلد «شركتي» بس · ولا ملف ثاني
@@ -221,3 +236,5 @@ metadata:
 | 0.2.0 | 2026-10-18 | الصيغة 0.2.0 (إضافة بس): إشارة الكاش من بلوك FIN-03 · أرقام FIN-02 وFIN-06 وPRD-07 · صحة الشركة من CEO-13 · حالات الحجوزات · `waiting_on` للمهام · قاعدة «آخر مخرج» وقراءة البلوكات الثابتة · الـdescription بدون نقاط |
 | 0.2.1 | 2026-10-18 | الخطوة 7: بصمة القالب الجديدة وسطر CSP الحرفي بعد تصحيح أمان القالب · وأمر «فعّل» و«وقّف» بالقالب ياخذ اسم الإدارة الثابت من القالب نفسه |
 | 0.2.2 | 2026-10-18 | الأوامر الملصوقة: «اعتمد» تمشي على قاعدة «نفس المحادثة» بـCEO-04 0.2.0 · الخطوة 7 والبصمة ما تغيرت |
+| 0.2.3 | 2026-10-19 | بعد تجربة المؤسس: «أول فتح» تلقائي بعد رسالة إدارات المرحلة يفتح المتصفح بنفسه · «تحديث هادي» بعد كل خطوة مهمة بدون فتح ثاني · رسالتين بالمخرج ب · القالب والبصمة ما تغيرت |
+| 0.2.4 | 2026-10-19 | قالب جديد: ترحيب وشريط «تأسيس شركتك» أثناء التعارف مع تحديث الصفحة كل 5 ثواني · حقل `onboarding` · البصمة الجديدة 365b1440… وسطر CSP الجديد |

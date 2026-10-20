@@ -1,7 +1,7 @@
 # فهرس إجراءات الكويت
 
 - **آخر تحديث:** 2026-10-18
-- **عدد السجلات:** 43 (31 إجراء + 12 مرجعية) · confirmed 16 · likely 18 · to_verify 9 · الـ40 الأولى مرّت على تحقق قانوني ثاني (17 و18/10/2026)، والـ3 الجديدة (هويتي وتأسيس مسارين) للحين ما مرّت
+- **عدد السجلات:** 43 (31 إجراء + 12 مرجعية) · confirmed 24 · likely 11 · to_verify 8 · الـ40 الأولى مرّت على تحقق قانوني ثاني (17 و18/10/2026)، والـ3 الجديدة (هويتي وتأسيس مسارين) للحين ما مرّت
 - **الوسوم:** كل `applies_to` من `docs/procedure-tags.md` (توحيد 18/10/2026)
 - **المسارات:** `data/procedures/` بالمستودع = `assets/procedures/` بعد التركيب · `docs/` و`templates/procedure.schema.yaml` = `assets/docs/` بعد التركيب · كلها داخل إدارة التأسيس
 - **الرسوم بالخريطة:** خطوة مكتوب جنبها «اختياري» أو «(كل سنة)» تنكتب بخريطة الأوراق بسطر لحالها برا المجموع (FOR-02 الخطوة 4)
@@ -118,7 +118,7 @@
 | 5 | التأسيس | KW-FOR-LLC-EST | confirmed |
 | 6 | المقر: عقد إيجار باسم الشركة أو أحد ملاكها + وصل الشهر الحالي (تأكد إن المبنى عنده رخصة إطفاء سارية قبل التوقيع) | KW-FOR-LLC-LIC | confirmed |
 | 7 | الترخيص | KW-FOR-LLC-LIC | confirmed |
-| 8 | رخصة إطفاء المحل (أول مستند فيها ترخيص التجارة) | KW-FOR-FIRE-SHOP | likely |
+| 8 | رخصة إطفاء المحل (أول مستند فيها ترخيص التجارة) | KW-FOR-FIRE-SHOP | confirmed |
 | 9 | ترخيص البلدية للوحة، والترخيص الصحي لو النشاط يحتاجه | KW-FOR-MUNICIPALITY-SIGN-HEALTH | likely |
 | 10 | اشتراك الشريك المتفرغ للإدارة بالتأمينات (الباب الخامس) | KW-FOR-PIFSS-SELF | likely |
 | 11 | تسجيل صاحب عمل وتسجيل الموظفين | KW-FOR-PIFSS-EMPLOYER | confirmed |
@@ -135,7 +135,7 @@
 | KW-FOR-TAX-ZAKAT | الشركات المساهمة العامة والمقفلة | 1% من صافي الربح | confirmed |
 | KW-FOR-TAX-NLST | الشركات الكويتية المدرجة بالبورصة | 2.5% من صافي الربح | likely |
 | KW-FOR-TAX-INCOME | الهيئات المؤسسة (الشركات الأجنبية بالتطبيق) | 15% من الدخل الصافي | likely |
-| KW-FOR-TAX-DMTT | المجموعات متعددة الجنسيات فوق حد الإيراد | حد أدنى 15% | likely |
+| KW-FOR-TAX-DMTT | المجموعات متعددة الجنسيات فوق حد الإيراد | حد أدنى 15% | confirmed |
 
 - ما فيه ضريبة قيمة مضافة بالكويت بأي سجل · ولا نسبة من هالقسم تنضاف على سعر البيع (`on_price: false` بكلها)
 - براءة الذمة الضريبية: ما انكتب لها سجل [للتحقق]
@@ -143,7 +143,7 @@
 ### 2.6 التوظيف (لـHR-05 · حسب التوقيت)
 | التوقيت | الخطوة | السجل | الحالة |
 |---|---|---|---|
-| قبل التعاقد | مرجع قانون العمل | KW-FOR-REF-LABOUR | likely |
+| قبل التعاقد | مرجع قانون العمل | KW-FOR-REF-LABOUR | confirmed |
 | قبل أول موظف وافد | ملف صاحب العمل بالقوى العاملة | KW-FOR-PAM-EMPLOYER-FILE | to_verify |
 | قبل المباشرة (وافد) | تصريح عمل ← تأشيرة ← إذن عمل | KW-FOR-PAM-WORK-PERMIT | likely |
 | بعد الدخول (وافد) | إقامة عمل (المادة 18) | KW-FOR-MOI-RESIDENCE-18 | likely |
@@ -173,50 +173,50 @@
 | KW-FOR-ADDRESS-HOME | وزارة التجارة | غير منشور | likely | 2026-10-18 |
 | KW-FOR-PACI-ADDRESS | المعلومات المدنية | 5.250 د.ك | confirmed | 2026-10-18 |
 | KW-FOR-POBOX | وزارة المواصلات | ما انقرت (الصفحة 404) | to_verify | 2026-10-18 |
-| KW-FOR-FIRE-SHOP | قوة الإطفاء | 10 د.ك | likely | 2026-10-17 |
+| KW-FOR-FIRE-SHOP | قوة الإطفاء | 10 د.ك | confirmed | 2026-10-20 |
 | KW-FOR-MUNICIPALITY-SIGN-HEALTH | البلدية | حسب مقاس الإعلان | likely | 2026-10-17 |
-| KW-FOR-PIFSS-SELF | التأمينات | اشتراك شهري حسب الشريحة | likely | 2026-10-17 |
+| KW-FOR-PIFSS-SELF | التأمينات | اشتراك شهري حسب الشريحة | likely | 2026-10-20 |
 | KW-FOR-PIFSS-EMPLOYER | التأمينات | غير منشور (اشتراكات نسب من الراتب) | confirmed | 2026-10-17 |
 | KW-FOR-PAM-EMPLOYER-FILE | القوى العاملة | غير منشور | to_verify | 2026-10-18 |
-| KW-FOR-PAM-ALLOWANCE | القوى العاملة + التجارة | غير منشور | likely | 2026-10-17 |
+| KW-FOR-PAM-ALLOWANCE | القوى العاملة + التجارة | 60–70 د.ك | likely | 2026-10-20 |
 | KW-FOR-KCCI-MEMBERSHIP | غرفة التجارة | 80 د.ك (ذ.م.م وشخص واحد) | likely | 2026-10-17 |
 | KW-FOR-BANK-PAYMENTS | جهات خاصة | حسب الجهة | to_verify | 2026-10-17 |
 | KW-FOR-DISCLOSURE | وزارة التجارة | — | confirmed | 2026-10-17 |
 | KW-FOR-RENEWAL | وزارة التجارة | غير منشور | to_verify | 2026-10-17 |
-| KW-FOR-REF-FDI | هيئة تشجيع الاستثمار | بقرار 182/2022 | likely | 2026-10-16 |
+| KW-FOR-REF-FDI | هيئة تشجيع الاستثمار | 300 د.ك للطلب + 150 د.ك لإصدار الترخيص (قرار 182/2022) | confirmed | 2026-10-20 |
 | KW-FOR-REF-FUND | الصندوق الوطني | — | to_verify | 2026-10-17 |
-| KW-FOR-REF-DOMAIN | هيئة الاتصالات | عند المسجّل | likely | 2026-10-16 |
-| KW-FOR-REF-PRIVACY | هيئة الاتصالات | — | to_verify | 2026-10-18 |
-| KW-FOR-REF-DIGITAL | وزارة التجارة | — | to_verify | 2026-10-17 |
-| KW-FOR-REF-MEDIA | وزارة الإعلام | غير منشور | likely | 2026-10-16 |
-| KW-FOR-REF-ETRANSACTIONS | الجهاز المركزي لتكنولوجيا المعلومات | — | likely | 2026-10-18 |
-| KW-FOR-REF-CONSUMER | وزارة التجارة | — | to_verify | 2026-10-18 |
-| KW-FOR-REF-LABOUR | القوى العاملة | — | likely | 2026-10-18 |
-| KW-FOR-REF-COMPANIES | وزارة التجارة | — | likely | 2026-10-18 |
-| KW-FOR-REF-TRADEMARK | وزارة التجارة | — | to_verify | 2026-10-18 |
+| KW-FOR-REF-DOMAIN | هيئة الاتصالات | عند المسجّل | confirmed | 2026-10-20 |
+| KW-FOR-REF-PRIVACY | هيئة الاتصالات | — | confirmed | 2026-10-20 |
+| KW-FOR-REF-DIGITAL | وزارة التجارة | — | to_verify | 2026-10-20 |
+| KW-FOR-REF-MEDIA | وزارة الإعلام | غير منشور | likely | 2026-10-20 |
+| KW-FOR-REF-ETRANSACTIONS | الجهاز المركزي لتكنولوجيا المعلومات | — | confirmed | 2026-10-20 |
+| KW-FOR-REF-CONSUMER | وزارة التجارة | — | to_verify | 2026-10-20 |
+| KW-FOR-REF-LABOUR | القوى العاملة | — | confirmed | 2026-10-20 |
+| KW-FOR-REF-COMPANIES | وزارة التجارة | — | confirmed | 2026-10-20 |
+| KW-FOR-REF-TRADEMARK | وزارة التجارة | — | to_verify | 2026-10-20 |
 | KW-FOR-REF-DISPUTES | وزارة العدل | — | likely | 2026-10-18 |
 | KW-FOR-TAX-ZAKAT | وزارة المالية | نسبة 1% من صافي الربح | confirmed | 2026-10-18 |
 | KW-FOR-TAX-NLST | وزارة المالية | نسبة 2.5% من صافي الربح | likely | 2026-10-18 |
 | KW-FOR-TAX-INCOME | وزارة المالية | نسبة 15% من الدخل الصافي | likely | 2026-10-18 |
-| KW-FOR-TAX-DMTT | وزارة المالية | حد أدنى 15% | likely | 2026-10-18 |
+| KW-FOR-TAX-DMTT | وزارة المالية | حد أدنى 15% | confirmed | 2026-10-20 |
 | KW-FOR-PAM-WORK-PERMIT | القوى العاملة | غير منشور | likely | 2026-10-18 |
-| KW-FOR-MOI-RESIDENCE-18 | وزارة الداخلية | 20 د.ك | likely | 2026-10-18 |
+| KW-FOR-MOI-RESIDENCE-18 | وزارة الداخلية | 20 د.ك | likely | 2026-10-20 |
 
 ---
 
 ## 4. السجلات المرجعية (رابط + جملة + إحالة، بدون خطوات)
 | السجل | الموضوع | الحالة |
 |---|---|---|
-| KW-FOR-REF-FDI | الاستثمار الأجنبي المباشر | likely |
+| KW-FOR-REF-FDI | الاستثمار الأجنبي المباشر | confirmed |
 | KW-FOR-REF-FUND | الصندوق الوطني للمشروعات الصغيرة والمتوسطة | to_verify |
-| KW-FOR-REF-DOMAIN | دومين .com.kw | likely |
-| KW-FOR-REF-PRIVACY | لائحة حماية خصوصية البيانات (هيئة الاتصالات، نسخة 2021) | to_verify |
-| KW-FOR-REF-ETRANSACTIONS | قانون المعاملات الإلكترونية وحماية البيانات الشخصية | likely |
+| KW-FOR-REF-DOMAIN | دومين .com.kw | confirmed |
+| KW-FOR-REF-PRIVACY | لائحة حماية خصوصية البيانات (هيئة الاتصالات، نسخة 2021) | confirmed |
+| KW-FOR-REF-ETRANSACTIONS | قانون المعاملات الإلكترونية وحماية البيانات الشخصية | confirmed |
 | KW-FOR-REF-DIGITAL | قانون التجارة الرقمية | to_verify |
 | KW-FOR-REF-CONSUMER | قانون حماية المستهلك | to_verify |
 | KW-FOR-REF-MEDIA | تراخيص الإعلام والإعلان والمؤثرين | likely |
-| KW-FOR-REF-LABOUR | قانون العمل في القطاع الأهلي | likely |
-| KW-FOR-REF-COMPANIES | قانون الشركات | likely |
+| KW-FOR-REF-LABOUR | قانون العمل في القطاع الأهلي | confirmed |
+| KW-FOR-REF-COMPANIES | قانون الشركات | confirmed |
 | KW-FOR-REF-TRADEMARK | قانون العلامات التجارية الخليجي | to_verify |
 | KW-FOR-REF-DISPUTES | المرافعات المدنية والتجارية والتحكيم القضائي | likely |
 

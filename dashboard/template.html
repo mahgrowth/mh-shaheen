@@ -2,7 +2,7 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-mzIE6MDoceiOriQuF1n1J9jkm08wZlpgRqun0pegmBk='; style-src 'sha256-uVBo/zVVjsMBarf32seFzi3sTeTD+riFY3tabDhGJpA=' 'sha256-74TXoUxGqX1H4pg+mUqcaPHixmanoh7Yi4eUdsFGT+s='; font-src data:; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'sha256-e6oUAL2V1RRp6NRnD9h/nJZ6+lngJkyr1OR53+mgczI='; style-src 'sha256-QFpXPITkWGeu8PprG+vhHUOiPwsZvtfLp50zrTfg1M4=' 'sha256-74TXoUxGqX1H4pg+mUqcaPHixmanoh7Yi4eUdsFGT+s='; font-src data:; base-uri 'none'; form-action 'none'; require-trusted-types-for 'script'; trusted-types 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="dark">
 <meta name="referrer" content="no-referrer">
@@ -127,6 +127,18 @@ svg.i{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .gate ul{list-style:none;display:flex;flex-direction:column;gap:2px;margin-top:2px}
 .gate li{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
 .gate .src{font-size:11px;color:var(--text-2)}
+
+/* التعارف: الترحيب وشريط التأسيس */
+.onb{overflow:hidden;padding:18px 20px;border-color:var(--primary-line);background:linear-gradient(150deg,rgba(45,212,191,.20),rgba(45,212,191,.04) 60%,rgba(255,255,255,.04))}
+.onb h2{font-family:var(--font-head);font-size:22px;font-weight:600;color:var(--text-1);margin-bottom:4px}
+.onb .lead{font-size:14px;color:var(--text-2);margin-bottom:12px}
+.onb .prog{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:13.5px;color:var(--primary-text);font-weight:600}
+.onb .track{flex:1 1 220px;height:10px;border-radius:999px;background:var(--glass-sunk);border:1px solid var(--glass-border);overflow:hidden}
+.onb .fill{height:100%;width:0;border-radius:999px;background:var(--primary);box-shadow:0 0 14px rgba(45,212,191,.55);transition:width .6s ease}
+.onb ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.onb li{font-size:12.5px;padding:5px 11px;border-radius:999px;background:var(--glass-sunk);border:1px solid var(--glass-border);color:var(--text-2)}
+.onb li b{color:var(--text-1);font-weight:600}
+.onb .live{font-size:11.5px;color:var(--text-3);margin-top:10px}
 
 /* الموافقات */
 .appr{border-color:var(--secondary-line)}
@@ -737,6 +749,40 @@ dialog::backdrop{background:rgba(2,10,14,.6)}
     top.appendChild(tools);
     main.appendChild(top);
   })();
+
+  /* ── التعارف: شاشة الترحيب وشريط «تأسيس شركتك» (تنعرض لين يخلص التعارف) ── */
+  var ONB = isObj(D.onboarding) ? D.onboarding : null;
+  if (ONB && ONB.done !== true) {
+    (function onboarding() {
+      var totalQ = (typeof ONB.total === 'number' && ONB.total > 0 && ONB.total < 100) ? Math.floor(ONB.total) : 10;
+      var doneQ = (typeof ONB.answered === 'number' && ONB.answered > 0) ? Math.min(Math.floor(ONB.answered), totalQ) : 0;
+      var s = el('section', 'onb glass');
+      s.setAttribute('aria-labelledby', 'h-onb');
+      var h = el('h2', null, 'هلا فيك 👋 هذا مكتب شركتك');
+      h.id = 'h-onb';
+      add(s, h, el('p', 'lead', g('جاوب الـCEO بالشات، وشركتك تنبني هني قدامك', 'جاوبي الـCEO بالشات، وشركتك تنبني هني قدامك')));
+      var prog = el('div', 'prog');
+      var track = el('div', 'track');
+      track.setAttribute('role', 'progressbar');
+      track.setAttribute('aria-valuemin', '0');
+      track.setAttribute('aria-valuemax', String(totalQ));
+      track.setAttribute('aria-valuenow', String(doneQ));
+      var fill = el('div', 'fill');
+      fill.style.width = Math.round(doneQ / totalQ * 100) + '%';
+      track.appendChild(fill);
+      add(prog, el('span', null, 'تأسيس شركتك: ' + doneQ + ' من ' + totalQ), track);
+      s.appendChild(prog);
+      var known = arr(ONB.known).filter(function (k) { return isObj(k) && txt(k.label) && txt(k.value); }).slice(0, 12);
+      if (known.length) {
+        var ul = el('ul');
+        known.forEach(function (k) { add(ul, add(el('li'), el('b', null, txt(k.label) + ': '), txt(k.value))); });
+        s.appendChild(ul);
+      }
+      add(s, el('p', 'live', 'الصفحة تتحدث بروحها كل كم ثانية لين يخلص التعارف'));
+      main.appendChild(s);
+      setTimeout(function () { location.reload(); }, 5000);
+    })();
+  }
 
   var stagePop = el('section', 'stagepop glass');
   stagePop.id = 'stagepop';
