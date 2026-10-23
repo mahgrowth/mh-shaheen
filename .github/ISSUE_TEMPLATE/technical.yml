@@ -1,0 +1,42 @@
+name: مشكلة تقنية
+description: علقت بالتركيب أو شاهين ما يشتغل
+title: "[مشكلة تقنية] "
+labels: ["مشكلة تقنية"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        جرّب أول جدول «علقت بالتركيب؟» بالـREADME
+        لا تكتب أي بيانات شخصية أو بيانات شركتك، ولا تلصق محتوى ملفات «شركتي»
+  - type: dropdown
+    id: path
+    attributes:
+      label: طريقة التركيب
+      options:
+        - أ · Claude Desktop
+        - ب · claude.ai
+        - ج · Claude Code
+    validations:
+      required: true
+  - type: input
+    id: device
+    attributes:
+      label: نوع الجهاز ونظام التشغيل
+      placeholder: مثلاً Mac (macOS 15) أو Windows 11
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: نسخة تطبيق Claude أو Claude Code (إذا تعرفها)
+  - type: textarea
+    id: steps
+    attributes:
+      label: شنو سويت بالضبط وشنو صار
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: نص رسالة الخطأ
+      description: انسخها حرفياً، وتقدر تسحب صورة الشاشة هني بعد ما تتأكد إنها ما فيها بيانات خاصة

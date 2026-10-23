@@ -1,0 +1,33 @@
+name: إجراء حكومي تغيّر
+description: خطوة أو رسوم أو رابط بقاعدة الإجراءات صار مختلف عن المصدر الرسمي
+title: "[إجراء تغيّر] "
+labels: ["إجراء حكومي"]
+body:
+  - type: markdown
+    attributes:
+      value: لا تكتب أي بيانات شخصية أو بيانات شركتك
+  - type: input
+    id: country
+    attributes:
+      label: الدولة
+    validations:
+      required: true
+  - type: input
+    id: record
+    attributes:
+      label: رقم السجل
+      placeholder: مثلاً KW-FOR-LLC-LIC
+    validations:
+      required: true
+  - type: textarea
+    id: change
+    attributes:
+      label: شنو تغيّر
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: رابط الصفحة الرسمية
+    validations:
+      required: true
